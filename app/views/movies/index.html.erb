@@ -13,4 +13,65 @@
   <% end %>
 </div>
 
+
+
+
+
+
+<table border="1">
+  <thead>
+    <tr>
+      <% @column_names.each do |column| %>
+        <th><%= column %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+        <tr>
+          <% @column_names.each do |column| %>
+            <td><%= movie[column] %></td>
+          <% end %>
+        </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      
+    </tr>
+  </tfoot>
+</table>
+
+
+
+
+<table>
+  <caption>
+    Council budget (in £) 2018
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Items</th>
+      <th scope="col">Expenditure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Donuts</th>
+      <td>3,000</td>
+    </tr>
+    <tr>
+      <th scope="row">Stationery</th>
+      <td>18,000</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th scope="row">Totals</th>
+      <td>21,000</td>
+    </tr>
+  </tfoot>
+</table>
+
+
 <%= link_to "New movie", new_movie_path %>

@@ -4,6 +4,7 @@ class MoviesController < ApplicationController
   # GET /movies or /movies.json
   def index
     @movies = Movie.all
+    @column_names = Movie.column_names - [ "id", "description", "created_at", "updated_at" ]
   end
 
   # GET /movies/1 or /movies/1.json
