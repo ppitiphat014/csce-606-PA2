@@ -13,9 +13,10 @@
   <% end %>
 </div>
 
-
-
-
+<!--
+column = title, rating, release date
+goal: make title clickable 
+-->
 
 
 <table border="1">
@@ -30,7 +31,11 @@
     <% @movies.each do |movie| %>
         <tr>
           <% @column_names.each do |column| %>
-            <td><%= movie[column] %></td>
+            <!--<td><%= movie[column] unless column == "title" %></td>
+
+            <td><%= link_to movie[column].to_s, movie if column == "title" %></td>
+            -->
+            <td><%= column == "title"? link_to(movie[column].to_s, movie) : movie[column] %></td>
           <% end %>
         </tr>
     <% end %>
