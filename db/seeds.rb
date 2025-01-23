@@ -30,6 +30,14 @@ more_movies = [
 
 ]
 
-more_movies.each do |movie|
-  Movie.create!(movie)
+# seed the data base
+
+Movie.destroy_all # start fresh (delete later)
+
+# prevent duplicated data when seeded
+more_movies.each do |movie_data|
+  Movie.find_or_create_by(title: movie_data[:title]) do |movie|
+    movie.rating = movie_data[:rating]
+    movie.release_date = movie_data[:release_date]
+  end
 end
