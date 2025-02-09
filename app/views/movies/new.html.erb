@@ -1,11 +1,26 @@
-<% content_for :title, "New movie" %>
 
-<h1>New movie</h1>
 
-<%= render "form", movie: @movie %>
 
-<br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag 'new_styles'%>
+    <title>Document</title>
+</head>
+<body class="new_body">
 
-<div>
-  <%= link_to "Back to movies", movies_path %>
-</div>
+  <% content_for :title, "New movie" %>
+
+  <h1 class="h1-new">New movie</h1>
+
+  <%= render "form", movie: @movie %>
+
+  <br>
+
+  <div>
+    <%= link_to "Back to movies", movies_path %>
+  </div>
+</body>
+</html>

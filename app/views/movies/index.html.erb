@@ -1,82 +1,107 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Movies" %>
-
-<h1>Movies</h1>
-
-<div id="movies">
-  <% @movies.each do |movie| %>
-    <%= render movie %>
-    <p>
-      <%= link_to "Show this movie", movie %>
-    </p>
-  <% end %>
-</div>
-
 <!--
 column = title, rating, release date
 goal: make title clickable 
+
+goal: make table sortable 
+-->
+
+<!--<%= link_to "index css styles", "/app/assets/stylesheets/index_styles" %>-->
+
+
+<!--
+  <table border="1">
+    <thead>
+      <tr>
+        <% @column_names.each do |column| %>
+          <th><%= column %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @movies.each do |movie| %>
+          <tr>
+            <% @column_names.each do |column| %>
+              <td><%= column == "title"? link_to(movie[column].to_s, movie) : movie[column] %></td>
+            <% end %>
+          </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+
+      </tr>
+    </tfoot>
+  </table>
 -->
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rottenpotatoes</title>
+    <%= stylesheet_link_tag 'index_styles'%>
+</head>
+<body class="body-index">
+  <h1 class="h1-index">Rottenpotatoes Movies</h1>
+  <table border="1" class="table-index">
+    <thead>
+      <tr>
+        <% @column_names.each do |column| %>
+          <th class="<%= 'sorted-asc' if sort_column == column && sort_direction == 'asc' %> <%= 'sorted-desc' if sort_column == column && sort_direction == 'desc' %>">
+            <%= link_to column.titleize, sort: column, direction: column == sort_column && sort_direction == 'asc' ? 'desc' : 'asc' %>
+            <% if sort_column == column %>
+              <span class="sort-icon"><%= sort_direction == 'asc' ? '↑' : '↓' %></span>
+            <% end %>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @movies.each do |movie| %>
+        <tr>
+          <% @column_names.each do |column| %>
+            <td><%= column == 'title' ? link_to(movie[column], movie) : movie[column] %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>
+</html>
+
+
+
+<!--
 <table border="1">
   <thead>
     <tr>
       <% @column_names.each do |column| %>
-        <th><%= column %></th>
+        <th class="<%= 'sorted-asc' if sort_column == column && sort_direction == 'asc' %> <%= 'sorted-desc' if sort_column == column && sort_direction == 'desc' %>">
+          <%= link_to column.titleize, sort: column, direction: column == sort_column && sort_direction == 'asc' ? 'desc' : 'asc' %>
+          <% if sort_column == column %>
+            <span class="sort-icon"><%= sort_direction == 'asc' ? '↑' : '↓' %></span>
+          <% end %>
+        </th>
       <% end %>
     </tr>
   </thead>
   <tbody>
     <% @movies.each do |movie| %>
-        <tr>
-          <% @column_names.each do |column| %>
-            <!--<td><%= movie[column] unless column == "title" %></td>
-
-            <td><%= link_to movie[column].to_s, movie if column == "title" %></td>
-            -->
-            <td><%= column == "title"? link_to(movie[column].to_s, movie) : movie[column] %></td>
-          <% end %>
-        </tr>
+      <tr>
+        <% @column_names.each do |column| %>
+          <td><%= column == 'title' ? link_to(movie[column], movie) : movie[column] %></td>
+        <% end %>
+      </tr>
     <% end %>
   </tbody>
-  <tfoot>
-    <tr>
-      
-    </tr>
-  </tfoot>
 </table>
+-->
 
 
 
 
-<table>
-  <caption>
-    Council budget (in £) 2018
-  </caption>
-  <thead>
-    <tr>
-      <th scope="col">Items</th>
-      <th scope="col">Expenditure</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">Donuts</th>
-      <td>3,000</td>
-    </tr>
-    <tr>
-      <th scope="row">Stationery</th>
-      <td>18,000</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <th scope="row">Totals</th>
-      <td>21,000</td>
-    </tr>
-  </tfoot>
-</table>
 
 
 <%= link_to "New movie", new_movie_path %>

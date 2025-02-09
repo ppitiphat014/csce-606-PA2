@@ -1,0 +1,25 @@
+th.sorted-asc {
+    background-color: lightgreen;
+  }
+  
+  th.sorted-desc {
+    background-color: lightcoral;
+  }
+  
+  th .sort-icon {
+    font-size: 0.8em;
+    margin-left: 5px;
+  }
+
+.table-index{
+  text-align: center;
+}
+
+.h1-index{
+  color: rgb(170, 99, 51);
+}
+
+
+
+
+  
